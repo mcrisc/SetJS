@@ -5,7 +5,7 @@ function Set(elements) {
 	this.bag = [];
 	var i;
 
-	if (typeof elements != "undefined") { // optional param
+	if (arguments.length > 0) { // optional args
 		for (i=0; i < elements.length; i++) {
 			this.add(elements[i]);
 		}
