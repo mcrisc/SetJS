@@ -52,7 +52,12 @@ Set.prototype.size = function() {
 
 Set.prototype.difference = function(otherSet) {
 	var result = new Set();
+
 	if (this.size() == 0) {return result;}
+	if (otherSet.size() == 0) {
+		result.bag_ = this.bag_.slice(0); 
+		return result;
+	}
 
 	var i;
 	var j = 0;
