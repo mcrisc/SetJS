@@ -2,7 +2,7 @@
 //TODO MIT license notice
 
 function Set(elements) {
-	this.bag = [];
+	this.bag_ = [];
 	var i;
 
 	if (arguments.length > 0) { // optional args
@@ -15,16 +15,16 @@ function Set(elements) {
 Set.prototype.search = function(e) {
 	//TODO document this
 	var i = 0;
-	var j = this.bag.length;
+	var j = this.bag_.length;
 	var pivot;
 
 	while (i < j) {
 		pivot = i + Math.floor((j - i) / 2);
-		if (this.bag[pivot] == e) {
+		if (this.bag_[pivot] == e) {
 			return pivot;
 		}
 
-		if (e > this.bag[pivot]) {
+		if (e > this.bag_[pivot]) {
 			i = pivot + 1;
 		} else {
 			j = pivot;
@@ -36,13 +36,13 @@ Set.prototype.search = function(e) {
 
 Set.prototype.add = function(e) {
 	var p = this.search(e);
-	if (this.bag[p] != e) {
-		this.bag.splice(p, 0, e); // insert e at position p
+	if (this.bag_[p] != e) {
+		this.bag_.splice(p, 0, e); // insert e at position p
 	}
 }
 
 Set.prototype.contains = function(e) {
 	var p = this.search(e);
-	return (this.bag[p] == e);
+	return (this.bag_[p] == e);
 }
 
