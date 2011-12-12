@@ -80,3 +80,33 @@ Set.prototype.difference = function(otherSet) {
 	return result;
 }
 
+Set.prototype.intersection = function(otherSet) {
+	var result = new Set();
+	if ((this.size() == 0) || (otherSet.size() == 0)) {return result;}
+
+	var a, b;
+	if (this.size() > otherSet.size()) {
+		a = this.bag_; 
+		b = otherSet.bag_;
+	} else {
+		a = otherSet.bag_;
+		b = this.bag_; 
+	}
+
+	var i;
+	var j = 0;
+	for (i=0; i < a.length; i++) {
+		if (a[i] > b[j]) {
+			j = otherSet.search(a[i], j); // finds First b[j] Not Lesser than a[i]
+		}
+
+		if (j == b.length) {break;} // end of b
+
+		if (a[i] == b[j]) {
+			result.bag_.push(a[i]);
+		}
+	}
+
+	return result;
+}
+

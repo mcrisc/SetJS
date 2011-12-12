@@ -57,7 +57,6 @@ describe("Set", function() {
 
 });
 
-// search and contains
 describe("Operation: difference (a - b)", function() {
 	var s1, s2;
 	beforeEach(function() {
@@ -84,12 +83,37 @@ describe("Operation: difference (a - b)", function() {
 
 	it('should return the empty set, when a is empty', function() {
 		var a = new Set(); var b = s1;
-		expect(equalArrays(a.difference(b).bag_, a.bag_, false)).toBe(true);
+		expect(a.difference(b).size()).toBe(0);
 	});
 
 	it('should return the empty set if sets are equal', function() {
 		var result = s1.difference(s1);
 		expect(result.size()).toBe(0);
+	});
+});
+
+describe("Operation: intersection", function() {
+	var s1, s2;
+	beforeEach(function() {
+		s1 = new Set([1, 2, 13, 15, 19, 20, 23, 26, 28, 32]);
+		s2 = new Set([5, 15, 16, 20, 25]);
+	});
+
+	it('should return the empty set when any of the sets is empty', function() {
+		var empty = new Set();
+		expect(s1.intersection(empty).size()).toBe(0);
+		expect(empty.intersection(s1).size()).toBe(0);
+		expect(empty.intersection(empty).size()).toBe(0);
+	});
+
+	it('should return a copy of a if sets are equal', function() {
+		var result = s1.intersection(s1);
+		expect(equalArrays(result.bag_, s1.bag_, false)).toBe(true);
+	});
+
+	it('should return a new set containing common elements in both sets', function() {
+		var result = s1.intersection(s2);
+		expect(equalArrays(result.bag_, [15, 20], false)).toBe(true);
 	});
 });
 
