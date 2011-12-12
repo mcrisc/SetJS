@@ -79,17 +79,14 @@ Set.prototype.difference = function(otherSet) {
 	for (i=0; i < a.length; i++) {
 		if (a[i] > b[j]) {
 			j = otherSet.search(a[i], j); // finds First b[j] Not Smaller than a[i]
-		}
-
-		if (j == b.length) { // end of b
-			result.bag_ = result.bag_.concat(a.slice(i));
-			break;
+			if (j == b.length) {break;}  // end of b
 		}
 
 		if (a[i] < b[j]) {
 			result.bag_.push(a[i]);
 		}
 	}
+	result.bag_ = result.bag_.concat(a.slice(i)); // adds the remaining elements, if there are any
 	
 	return result;
 }
