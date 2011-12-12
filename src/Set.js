@@ -75,18 +75,17 @@ Set.prototype.difference = function(otherSet) {
 
 	var i;
 	var j = 0;
-	var a = this.bag_; var b = otherSet.bag_;
-	for (i=0; i < a.length; i++) {
-		if (a[i] > b[j]) {
-			j = otherSet.search(a[i], j); // finds First b[j] Not Smaller than a[i]
-			if (j == b.length) {break;}  // end of b
+	for (i=0; i < this.bag_.length; i++) {
+		if (this.bag_[i] > otherSet.bag_[j]) {
+			j = otherSet.search(this.bag_[i], j); // finds First otherSet[j] Not Smaller than this[i]
+			if (j == otherSet.bag_.length) {break;}  // end of otherSet
 		}
 
-		if (a[i] < b[j]) {
-			result.bag_.push(a[i]);
+		if (this.bag_[i] < otherSet.bag_[j]) {
+			result.bag_.push(this.bag_[i]);
 		}
 	}
-	result.bag_ = result.bag_.concat(a.slice(i)); // adds the remaining elements, if there are any
+	result.bag_ = result.bag_.concat(this.bag_.slice(i)); // adds the remaining elements, if there are any
 	
 	return result;
 }
@@ -97,13 +96,12 @@ Set.prototype.intersection = function(otherSet) {
 
 	var i;
 	var j = 0;
-	var a = this.bag_; var b = otherSet.bag_;
-	for (i=0; i < a.length; i++) {
-		j = otherSet.search(a[i], j); // finds First b[j] Not Smaller than a[i]
-		if (j == b.length) {break;} // end of b
+	for (i=0; i < this.bag_.length; i++) {
+		j = otherSet.search(this.bag_[i], j); // finds First otherSet[j] Not Smaller than this[i]
+		if (j == otherSet.bag_.length) {break;} // end of otherSet
 
-		if (a[i] == b[j]) {
-			result.bag_.push(a[i]);
+		if (this.bag_[i] == otherSet.bag_[j]) {
+			result.bag_.push(this.bag_[i]);
 		}
 	}
 
