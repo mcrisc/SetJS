@@ -86,5 +86,10 @@ describe("Operation: difference (a - b)", function() {
 		var a = new Set(); var b = s1;
 		expect(equalArrays(a.difference(b).bag_, a.bag_, false)).toBe(true);
 	});
+
+	it('should return the empty set if sets are equal', function() {
+		var result = s1.difference(s1);
+		expect(result.size()).toBe(0);
+	});
 });
 
