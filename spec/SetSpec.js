@@ -115,5 +115,9 @@ describe("Operation: intersection", function() {
 		var result = s1.intersection(s2);
 		expect(equalArrays(result.bag_, [15, 20], false)).toBe(true);
 	});
+
+	it('should generate the same result, no matter which set comes first', function() {
+		expect(equalArrays(s1.intersection(s2).bag_, s2.intersection(s1).bag_, false)).toBe(true);
+	});
 });
 
