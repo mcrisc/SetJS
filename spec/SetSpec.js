@@ -55,6 +55,12 @@ describe("Set", function() {
 		expect(s.size()).toBe(4);
 	});
 
+	it("should have an 'equals' operation", function() {
+		var s1 = new Set([8, 9, 4, 2]);
+		var s2 = new Set([2, 4, 8, 9]);
+		expect(s1.equals(s2)).toBe(true);
+	});
+
 });
 
 describe("Operation: difference (a - b)", function() {
@@ -67,18 +73,18 @@ describe("Operation: difference (a - b)", function() {
 	it('should work when |a| > |b|', function() {
 		var a = s1; var b = s2;
 		var resultSet = a.difference(b);
-		expect(equalArrays(resultSet.bag_, [1, 2, 13, 19, 23, 26, 28, 32], false)).toBe(true);
+		expect(resultSet.equals(new Set([1, 2, 13, 19, 23, 26, 28, 32]))).toBe(true);
 	});
 
 	it('should work when |a| < |b|', function() {
 		var a = s2; var b = s1;
 		var resultSet = a.difference(b);
-		expect(equalArrays(resultSet.bag_, [5, 16, 25], false)).toBe(true);
+		expect(resultSet.equals(new Set([5, 16, 25]))).toBe(true);
 	});
 
 	it('should return a copy of a, when b is empty', function() {
 		var a = s1; var b = new Set();
-		expect(equalArrays(a.difference(b).bag_, a.bag_, false)).toBe(true);
+		expect(a.difference(b).equals(a)).toBe(true);
 	});
 
 	it('should return the empty set, when a is empty', function() {
@@ -108,16 +114,16 @@ describe("Operation: intersection", function() {
 
 	it('should return a copy of a if sets are equal', function() {
 		var result = s1.intersection(s1);
-		expect(equalArrays(result.bag_, s1.bag_, false)).toBe(true);
+		expect(result.equals(s1)).toBe(true);
 	});
 
 	it('should return a new set containing common elements in both sets', function() {
 		var result = s1.intersection(s2);
-		expect(equalArrays(result.bag_, [15, 20], false)).toBe(true);
+		expect(result.equals(new Set([15, 20]))).toBe(true);
 	});
 
 	it('should generate the same result, no matter which set comes first', function() {
-		expect(equalArrays(s1.intersection(s2).bag_, s2.intersection(s1).bag_, false)).toBe(true);
+		expect(s1.intersection(s2).equals(s2.intersection(s1))).toBe(true);
 	});
 });
 
