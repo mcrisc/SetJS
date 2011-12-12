@@ -1,5 +1,7 @@
-
-//TODO MIT license notice
+/*
+ * Copyright (c) 2011 Marcelo Criscuolo (criscuolo.marcelo [at] gmail [dot] com)
+ * Released under the MIT License.
+ */
 
 function Set(elements) {
 	this.bag_ = [];
