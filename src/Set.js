@@ -112,3 +112,25 @@ Set.prototype.intersection = function(otherSet) {
 	return result;
 }
 
+Set.prototype.union = function(otherSet) {
+	var result = new Set();
+	if ((this.size() == 0) && (otherSet.size() == 0)) {return result;}
+
+	var base, merged;
+	if (this.size() > otherSet.size()) {
+		base = this;
+		merged = otherSet;
+	} else {
+		base = otherSet;
+		merged = this;
+	}
+
+	result.bag_ = base.bag_.slice(0); // make a copy
+	var i;
+	for (i=0; i < merged.bag_.length; i++) {
+		result.add(merged.bag_[i]); // add() doesn't allow repetition
+	}
+
+	return result;
+}
+

@@ -59,6 +59,9 @@ describe("Set", function() {
 		var s1 = new Set([8, 9, 4, 2]);
 		var s2 = new Set([2, 4, 8, 9]);
 		expect(s1.equals(s2)).toBe(true);
+
+		var empty = new Set();
+		expect(empty.equals(new Set())).toBe(true);
 	});
 
 });
@@ -124,6 +127,47 @@ describe("Operation: intersection", function() {
 
 	it('should generate the same result, no matter which set comes first', function() {
 		expect(s1.intersection(s2).equals(s2.intersection(s1))).toBe(true);
+	});
+});
+
+describe("Operation: union", function() {
+	var s1, s2, empty;
+	beforeEach(function() {
+		s1 = new Set([1, 2, 13, 15, 19, 20, 23, 26, 28, 32]);
+		s2 = new Set([5, 15, 16, 20, 25]);
+		empty = new Set();
+	});
+
+	it('should generate a valid new Set (elements ordered, and no repetition)', function() {
+		function isOrdered(list) {
+			var i;
+			for (i=1; i < list.length; i++) {
+				if (list[i - 1] > list[i]) {return false;}
+			}
+
+			return true;
+		}
+
+		var r = s1.union(s2);
+		expect(isOrdered(r.getElements())).toBe(true);
+
+		expect(equalArrays(r.getElements(), [1, 2, 5, 13, 15, 16, 19, 20, 23, 25, 26, 28, 32], false)).toBe(true);
+	});
+
+	it('should return set A, if A is non-empty and the other set is empty', function() {
+		var r = s1.union(empty);
+		expect(r.equals(s1)).toBe(true);
+
+		var s = empty.union(s1);
+		expect(s.equals(s1)).toBe(true);
+	});
+
+	it('should return an empty set if and only if both sets are empty', function() {
+		var r = empty.union(empty);
+		expect(r.equals(empty)).toBe(true);
+		
+		var s = empty.union(s2);
+		expect(s.equals(empty)).toBe(false);
 	});
 });
 
