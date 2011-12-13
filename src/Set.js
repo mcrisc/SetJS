@@ -52,6 +52,10 @@ Set.prototype.size = function() {
 	return this.bag_.length;
 }
 
+Set.prototype.getElements = function() {
+	return this.bag_;
+}
+
 Set.prototype.equals = function(otherSet) {
 	if (this.size() != otherSet.size()) {return false;}
 	var i;

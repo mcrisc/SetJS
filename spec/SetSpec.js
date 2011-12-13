@@ -24,11 +24,11 @@ describe("Set", function() {
 	});
 
 	it("should not allow repeated elements", function() {
-		expect(equalArrays(s.bag_, [32, 90, 5, 15], true)).toBe(true);
+		expect(equalArrays(s.getElements(), [32, 90, 5, 15], true)).toBe(true);
 	});
 
 	it("should store elements in their natural order", function() {
-		expect(equalArrays(s.bag_, [5, 15, 32, 90], false)).toBe(true);
+		expect(equalArrays(s.getElements(), [5, 15, 32, 90], false)).toBe(true);
 	});
 
 	it("should have a 'contains' operation", function() {
@@ -38,7 +38,7 @@ describe("Set", function() {
 
 	it("should keep the set ordered when adding a new element", function() {
 		s.add(17);
-		expect(equalArrays(s.bag_, [5, 15, 17, 32, 90], false)).toBe(true);
+		expect(equalArrays(s.getElements(), [5, 15, 17, 32, 90], false)).toBe(true);
 	});
 
 	it("should find an element's position", function() {
