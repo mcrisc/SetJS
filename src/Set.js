@@ -14,6 +14,10 @@ function Set(elements) {
 	}
 }
 
+Set.prototype.toString = function() {
+	return "Set [" + this.bag_.join(', ') + "]";
+}
+
 Set.prototype.search = function(e, start) {
 	//TODO document this
 	var j = this.bag_.length;
@@ -73,7 +77,7 @@ Set.prototype.difference = function(otherSet) {
 
 	if (this.size() == 0) {return result;}
 	if (otherSet.size() == 0) {
-		result.bag_ = this.bag_.slice(0); 
+		result.bag_ = this.bag_.slice(0);
 		return result;
 	}
 
@@ -90,7 +94,7 @@ Set.prototype.difference = function(otherSet) {
 		}
 	}
 	result.bag_ = result.bag_.concat(this.bag_.slice(i)); // adds the remaining elements, if there are any
-	
+
 	return result;
 }
 
@@ -133,4 +137,3 @@ Set.prototype.union = function(otherSet) {
 
 	return result;
 }
-
